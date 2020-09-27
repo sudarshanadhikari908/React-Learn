@@ -15,7 +15,7 @@ const Events = () => {
     const bgChange = () => {
         let newBg = 'pink';
         setBg(newBg);
-        let btn2 = " ❤️ I Love You ❤️ "
+        let btn2 = " ❤️ ❤️ "
         setName(btn2);
 
 
@@ -25,7 +25,7 @@ const Events = () => {
     };
     const change = () => {
         setBg("gray");
-        setName("Replica ❤️ ❤️")
+        setName(" ❤️  ❤️❤️")
 
     };
 

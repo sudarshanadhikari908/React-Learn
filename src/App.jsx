@@ -1,66 +1,39 @@
-import React, { useState } from 'react';
-import ToDoLists from './ToDoLists';
-
+import React from 'react';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import About from './About';
+import Contact from './Contact';
+import Home from './Home';
+import Error from './Error';
+import Menu from './Menu';
+import User from './User';
+import Service from './Service';
+import Search from './Search';
 
 const App = () => {
-    const [inputList, setInput] = useState("");
-    const [items, setItems] = useState([]);
-
-
-    const itemEvent = (event) => {
-
-        setInput(event.target.value)
-
-    };
-    const deleteItems = (id) => {
-
-        console.log('delete')
-        setItems((olditems) => {
-            return olditems.filter((arrElem, index) => {
-                return index !== id;
-            });
-
-        });
-    };
-    const listItem = () => {
-        setItems((olditems) => {
-
-            return [...olditems, inputList]
-
-        });
-        setInput('');
-
-    };
-
+    const Name = () => {
+        return <h1> I am Name page</h1>
+    }
 
     return (
-
         <>
-            <div className='main_div'>
-                <div className='center_div'>
+            <Menu />
+            <Switch>
+                <Route path='/about' component={() => <About name='About' />} />
+                <Route exact path='/contact' component={Contact} />
+                <Route path='/service' component={Service} />
+                <Route path='/search' component={Search} />
+                <Route path='/contact/name' component={Name} />
+                <Route exact path='/' component={Home} />
+
+                <Route path='/user/:name/:address' component={User} />
+                {/* <Route component={Error} /> */}
+                <Redirect to='/' />
+            </Switch>
 
 
-                    <br />
-                    <h1>To-Do List</h1>
-
-                    <input type='text' placeholder="Add a Items" onChange={itemEvent} value={inputList} /><button onClick={listItem}> + </button><br />
-                    <ul>
-
-                        {items.map((itemval, unique) => {
-                            return <ToDoLists text={itemval} key={unique} id={unique} onSelect={deleteItems} />
-                        })}
-
-
-
-                    </ul>
-
-                </div>
-
-
-
-            </div>
         </>
 
-    )
-};
+    );
+
+}
 export default App;
